@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Youtube to mp3</title>
+    <link rel="stylesheet" href="index.css" />
+
+    <script defer src="render.js"></script>
+
+  </head>
+  <body >
+  <div id="progress-bar"> 
+    <progress class="progress is-small is-primary" max="100">15%</progress>
+  </div>
+
+  <div class="wrapper">
+    <h4 id="title" class="title"></h4>
+
+    <input type="text" id="url" class="input" placeholder="https://youtube.com/...." />
+    <button class="button is-primary" id="download">Download</button>
+
+    <div class="notification is-danger" id="danger" >
+      <button class="delete" id="danger-button"></button>
+      Invalid URL provided
+    </div>
+
+
+    <div class="is-text text">
+        <p>Download music straight from youtube. Enter a valid URL to the input field and press the Download button.</p>
+        <p>Choose a location to save the media file and press "Save"</p>
+      </div>
+    </div>
+
+  </body>
+</html>
