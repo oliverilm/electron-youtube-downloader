@@ -11,10 +11,6 @@ const homeDir = require('os').homedir();
 const desktopDir = `${homeDir}/Desktop`;
 const progress = document.getElementById("progress-bar")
 const thumb = document.getElementById("thumbnail");
-const header = document.getElementById("header")
-
-
-
 
 progress.hidden = true
 danger.hidden = true
@@ -27,12 +23,14 @@ url.addEventListener("input",  async () => {
   progress.hidden = false;
   try {
     await ytdl.getInfo(url.value.trim(), function (err, info) {
+
       tt.innerText = info.title
       danger.hidden = true;
       thumb.setAttribute("src", info.player_response.videoDetails.thumbnail.thumbnails[1].url)
-      console.log(info.player_response.videoDetails.thumbnail.thumbnails[1])
+
     });
   } catch (e) {
+
     thumb.setAttribute("src", null)
     tt.innerText = ""
     danger.hidden = false;
