@@ -5,12 +5,23 @@
   margin-right: 10%;
   margin-left: 10%;
 }
+#header {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 1em;
+  min-height: 110px;
+}
+
+
 #title {
   min-height: 3em;
+  margin-left: 1em;
 }
 #progress-bar {
-  height: 1em;
+  min-height: 10px;
+  height: 10px;
 }
+
 #url {
   margin-bottom: 1em;
 }

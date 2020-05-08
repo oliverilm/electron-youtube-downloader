@@ -10,6 +10,10 @@ const tt = document.getElementById("title");
 const homeDir = require('os').homedir();
 const desktopDir = `${homeDir}/Desktop`;
 const progress = document.getElementById("progress-bar")
+const thumb = document.getElementById("thumbnail");
+const header = document.getElementById("header")
+
+
 
 
 progress.hidden = true
@@ -19,15 +23,17 @@ dangerButton.addEventListener("click", () => {
   danger.hidden = true;
 })
 
-
 url.addEventListener("input",  async () => {
   progress.hidden = false;
   try {
-    await ytdl.getInfo(url.value, function (err, info) {
+    await ytdl.getInfo(url.value.trim(), function (err, info) {
       tt.innerText = info.title
       danger.hidden = true;
+      thumb.setAttribute("src", info.player_response.videoDetails.thumbnail.thumbnails[1].url)
+      console.log(info.player_response.videoDetails.thumbnail.thumbnails[1])
     });
   } catch (e) {
+    thumb.setAttribute("src", null)
     tt.innerText = ""
     danger.hidden = false;
 
@@ -39,12 +45,12 @@ dwl.addEventListener("click", async () => {
   progress.hidden = false
 
   const url = document.getElementById("url");
-  danger.hidden = url.value.length !== 0;
+  danger.hidden = url.value.trim().length !== 0;
   try {
-    await ytdl.getInfo(url.value, async function (err, info) {
+    await ytdl.getInfo(url.value.trim(), async function (err, info) {
 
       const {filePath} = await dialog.showSaveDialog({buttonLabel: "Save", defaultPath: `${desktopDir}/${info.title.replace(" ", "-")}`})
-      ytdl(url.value, {filter: 'audioonly'}).pipe(fs.createWriteStream(`${filePath}.mp3`));
+      ytdl(url.value.trim(), {filter: 'audioonly'}).pipe(fs.createWriteStream(`${filePath}.mp3`));
 
       url.value = ""
     });
